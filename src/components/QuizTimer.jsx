@@ -4,15 +4,21 @@ const QuizTimer = ({ timeOut, onTimeOut }) => {
   const [remeingTime, setRemeingTime] = useState(timeOut);
 
   useEffect(() => {
-    setTimeout(onTimeOut, timeOut);
-  }, [onTimeOut,timeOut]);
+    const timer = setTimeout(onTimeOut, timeOut);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [onTimeOut, timeOut]);
 
   useEffect(() => {
     setInterval(() => {
-      setRemeingTime((prev) => {
+      const interval = setRemeingTime((prev) => {
         return prev - 100;
       });
-    }, 100);
+      return () => {
+        clearInterval(interval);
+      };
+    }, 200);
   }, []);
 
   return <progress value={remeingTime} max={timeOut}></progress>;
