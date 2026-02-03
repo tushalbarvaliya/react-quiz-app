@@ -1,10 +1,10 @@
-import React from 'react'
-import logo from '../assets/quiz-logo.png'
-export const Header = () => {
+import logoImg from '../assets/quiz-logo.png';
+
+export default function Header() {
   return (
     <header>
-        <img src={logo} alt="" />
-        <h2>Quiz App(React)</h2>
+      <img src={logoImg} alt="Quiz logo" />
+      <h1>ReactQuiz</h1>
     </header>
-  )
+  );
 }
